@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import SigninForm from '../forms/signinForm';
 import SignupForm from '../forms/signupForm';
+import authImg from '../../../static/assets/images/auth/authImg.jpg'
 
 class Auth extends Component {
 
@@ -18,16 +19,20 @@ class Auth extends Component {
             this.props.history.push('/home');
         })
     }
-    
+
     render() {
         return (
             <div className='auth-container'>
-                <h1>Login or Signup</h1>
-                <div className='signin'>
-                    <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
+                <div className='left-column'>
+                    <img src={authImg} />
                 </div>
-                <div className='signup'>
-                    <SignupForm onSubmit={(event) => this.handleSignup(event)} className='signup-form'/>
+                <div className='right-column'>
+                    <div className='signin'>
+                        <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
+                    </div>
+                    <div className='signup'>
+                        <SignupForm onSubmit={(event) => this.handleSignup(event)} className='signup-form' />
+                    </div>
                 </div>
             </div>
         )

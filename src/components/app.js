@@ -11,6 +11,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Auth from './pages/auth';
+import NewBlogPost from './pages/newPost';
 
 export default class App extends Component {
   
@@ -25,6 +26,7 @@ export default class App extends Component {
               <Route path='/home' component={Home}/>
               <Route path='/about' component={About}/>
               <Route path='/contact' component={Contact}/>
+              <Route path='/new' component={NewBlogPost}/>
             </Switch>
           </div>
         </Router>

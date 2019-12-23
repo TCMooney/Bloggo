@@ -1,0 +1,12 @@
+.auth-container {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr ;
+    .left-column img {
+        width: 100%;
+    }
+    .right-column {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-left: 25px;
+    }
+}
