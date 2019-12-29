@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from 'react-router-dom';
+
+import history from '../history';
 
 import NavigationContainer from './navigation/navigation-container'
 import Home from './pages/home';
@@ -18,7 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <div className='container'>
-        <Router>
+        <Router history={history}>
           <div>
             <NavigationContainer />
             <Switch>

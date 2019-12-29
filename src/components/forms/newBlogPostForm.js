@@ -1,16 +1,51 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import  { FormInput, FormButton } from './formFields';
+import { FormInput, FormButton, FormTextArea } from './formFields';
 
 class NewBlogForm extends Component {
     render() {
+        const { handleSubmit } = this.props;
         return (
-            <div className='new-blog-form'>
-                NewBlogForm
-            </div>
+            <form className='new-blog-form' onSubmit={handleSubmit}>
+                <Field
+                    className='new-blog-form__blog-title'
+                    name='title'
+                    type='title'
+                    title='Blog Title'
+                    placeholder='Blog Title'
+                    component={FormInput} />
+                <Field
+                    className='new-blog-form__content'
+                    name='content'
+                    type='content'
+                    title='Blog Content'
+                    placeholder='Blog Content'
+                    component={FormTextArea}
+                />
+                <Field
+                    className='new-blog-form__tags'
+                    name='tags'
+                    type='tags'
+                    title='tags'
+                    placeholder='Tags'
+                    component={FormInput}
+                />
+                <Field
+                    className='new-blog-form__submit'
+                    name='submit'
+                    type='submit'
+                    title='Submit'
+                    component={FormButton}
+                />
+
+            </form>
         )
     }
 }
+
+NewBlogForm = reduxForm({
+    form: 'NewBlogForm'
+})(NewBlogForm);
 
 export default NewBlogForm;

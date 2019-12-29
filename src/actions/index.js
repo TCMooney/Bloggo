@@ -3,7 +3,12 @@ import {
     signUp
 } from './auth'
 
+import {
+    createNewBlogPost
+} from './blogPosts';
+
 export {
     signIn,
-    signUp
+    signUp,
+    createNewBlogPost
 }
