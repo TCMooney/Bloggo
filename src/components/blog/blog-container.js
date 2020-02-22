@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-import { ROOT_URL } from '../../config';
 import BlogItem from './blog-items';
 
-export default class BlogContainer extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            data:[]
-        }
-    }
-
-    getBlogItems() {
-        axios.get(`${ROOT_URL}/api/blogPost/getPosts`)
-            .then(response => {
-                this.setState({
-                    data: response.data
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
+class BlogContainer extends Component {
     componentDidMount() {
-        this.getBlogItems();
+        this.props.fetchBlogs();
     }
 
-    blogPosts() {
-        return this.state.data.map(post => {
-            let formattedDate = new Date(post.date);
-            let postedDate =`${formattedDate.getMonth() + 1}/${formattedDate.getDate()}/${formattedDate.getFullYear()}`;
-            return <BlogItem key={post.id} title={post.title} date={postedDate} slug={post.id}/>
-        })
-    }
     render() {
         return (
-            <div className='blog-wrapper'>
-                {this.blogPosts()}
+            <div className='blog-posts'>
+                <div className='blog-item'>
+                    {this.props.blogPosts.map(blogPost => {
+                        return <BlogItem key={blogPost._id} {...blogPost} />
+                    })}
+                </div>
+                <div className='new-blog-button'>
+                    <button>New Blog</button>
+                </div>
             </div>
+
         )
     }
 }
+
+function mapStateToProps(state) {
+    const { blogPosts } = state.blogPosts
+    return {
+        blogPosts
+    }
+}
+
+export default connect(mapStateToProps, actions)(BlogContainer);

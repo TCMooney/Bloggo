@@ -4,11 +4,15 @@ import {
 } from './auth'
 
 import {
-    createNewBlogPost
+    createNewBlogPost,
+    fetchBlogs,
+    fetchBlogWithId
 } from './blogPosts';
 
 export {
     signIn,
     signUp,
-    createNewBlogPost
+    createNewBlogPost,
+    fetchBlogs,
+    fetchBlogWithId
 }

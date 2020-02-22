@@ -1,10 +1,12 @@
 import {
-    ADD_NEW_BLOG
+    ADD_NEW_BLOG,
+    SET_BLOGS,
+    FETCH_BLOG_ID
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    blogPost: [],
-    loading: false
+    blogPostToEdit: {},
+    blogPosts: []
 };
 
 export default function(state = INITIAL_STATE,
@@ -15,7 +17,24 @@ export default function(state = INITIAL_STATE,
                     ...state,
                     blogPost: [action.payload, ...state.blogPost]
                 };
-            default:
-                return state;
+            case SET_BLOGS:
+                const blogPosts = action.payload;
+                return {
+                    ...state,
+                    blogPosts
+                }
+            case FETCH_BLOG_ID:
+                const blogPostId = action.payload;
+                var blogPostToEdit = {};
+                state.blogPosts.map(blogPost => {
+                    if(blogPost._id == blogPostId) {
+                        blogPostToEdit = blogPost;
+                    }
+                })
+                return {
+                    ...state,
+                    blogPostToEdit
+                }
+            default: return state;
         }
     }
