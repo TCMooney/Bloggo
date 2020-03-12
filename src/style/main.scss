@@ -1,14 +1,5 @@
-html {
-    font-size: 62.5%; // 1rem is 10px
-}
-//BASE
 @import './base.scss';
-
-//PAGES
-@import './navigation.scss';
 @import './auth.scss';
-
-//FORMS
 @import './form-fields.scss';
-@import './signin-form.scss';
-@import './signup-form.scss';
+@import './navigation.scss';
+@import './mediaQuery.scss';

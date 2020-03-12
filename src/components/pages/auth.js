@@ -22,17 +22,15 @@ class Auth extends Component {
 
     render() {
         return (
-            <div className='auth-container'>
-                <div className='left-column'>
-                    <img src={authImg} />
+            <div className='auth-container' 
+                style={{
+                    backgroundImage: `url(${authImg})`
+            }}>
+                <div className='signin'>
+                    <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
                 </div>
-                <div className='right-column'>
-                    <div className='signin'>
-                        <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
-                    </div>
-                    <div className='signup'>
-                        <SignupForm onSubmit={(event) => this.handleSignup(event)} className='signup-form' />
-                    </div>
+                <div className='signup'>
+                    <SignupForm onSubmit={(event) => this.handleSignup(event)} className='signup-form' />
                 </div>
             </div>
         )

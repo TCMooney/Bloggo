@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default function () {
-    return (
-        <div className='nav-wrapper'>
-            <div className='left-side'>
-                Bloggo
+import Logout from './logout';
+
+class NavigationContainer extends Component {
+    render() {
+        const { isAuthenticated } = this.props.auth;
+        const authLinks = (
+            <div className='nav-link-wrapper'>
+                <Logout />
             </div>
-            <div className='right-side'>
-                <div className='nav-link-wrapper'>
-                    <NavLink
-                        exact to='/home'
-                        activeClassName='nav-link-active'>
-                        Home
-                    </NavLink>
+        )
+        return (
+            <div className='nav-wrapper' >
+                <div className='left-side'>
+                    <NavLink to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
                 </div>
-                <div className='nav-link-wrapper'>
-                    <NavLink
-                        to='/about'
-                        activeClassName='nav-link-active'>
-                        About
-                    </NavLink>
+                <div className='right-side'>
+                    {isAuthenticated ? authLinks : null}
                 </div>
             </div>
-        </div>
-    )
-
+        )
+    }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, null)(NavigationContainer);

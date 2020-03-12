@@ -1,6 +1,8 @@
 import {
     signIn,
-    signUp
+    signUp,
+    loadUser,
+    logout
 } from './auth'
 
 import {
@@ -14,5 +16,7 @@ export {
     signUp,
     createNewBlogPost,
     fetchBlogs,
-    fetchBlogWithId
+    fetchBlogWithId,
+    loadUser,
+    logout
 }

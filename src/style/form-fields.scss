@@ -1,11 +1,8 @@
 .form-input {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 3fr 10fr;
-
-    align-items: center;
+    
     width: 100%;
-    justify-content: center;
     &__label {
         grid-row: 1/-1;
         grid-column: 1/2;
@@ -14,7 +11,9 @@
     &__input {
         grid-row: 1/-1;
         grid-column: 2/3;
-        height: 30px;
+        height: 30px;  
+
+
         width: 75%;
         border: 1px solid black;
         border-radius: 5px;

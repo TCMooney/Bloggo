@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import history from '../../history';
 
 import BlogItem from './blog-items';
 
@@ -9,17 +10,19 @@ class BlogContainer extends Component {
         this.props.fetchBlogs();
     }
 
+    handleNewBlogClick() {
+        history.push('/new')
+    }
+
     render() {
         return (
             <div className='blog-posts'>
                 <div className='blog-item'>
                     {this.props.blogPosts.map(blogPost => {
-                        return <BlogItem key={blogPost._id} {...blogPost} />
+                        return <BlogItem key={blogPost._id} {...blogPost} />  
                     })}
                 </div>
-                <div className='new-blog-button'>
-                    <button>New Blog</button>
-                </div>
+                <button onClick={this.handleNewBlogClick}>New Blog</button>
             </div>
 
         )
