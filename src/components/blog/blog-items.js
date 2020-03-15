@@ -8,7 +8,7 @@ class BlogItem extends Component {
         return (
             <div className='blog-item-wrapper'>
                 <Link to={`/blog/${_id}`}>{title}</Link>
-                <div className='blog-date'></div>
+                <div className='blog-item-date'></div>
                 <div>{parsedDate.getMonth() + 1 + '/' + parsedDate.getDate() + '/' + parsedDate.getFullYear()}</div>
             </div>
         )

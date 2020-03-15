@@ -50,7 +50,6 @@ export function logout() {
 };
 
 export function signUp(fields, success) {
-    console.log(fields)
     return function (dispatch) {
         axios.post(`${ROOT_URL}/api/users`, fields)
             .then(response => {
