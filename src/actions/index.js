@@ -8,8 +8,14 @@ import {
 import {
     createNewBlogPost,
     fetchBlogs,
-    fetchBlogWithId
+    fetchBlogWithId,
+    editBlog
 } from './blogPosts';
+
+import {
+    handleModalOpen,
+    handleModalClose
+} from './modals';
 
 export {
     signIn,
@@ -18,5 +24,8 @@ export {
     fetchBlogs,
     fetchBlogWithId,
     loadUser,
-    logout
+    logout,
+    editBlog,
+    handleModalOpen,
+    handleModalClose
 }

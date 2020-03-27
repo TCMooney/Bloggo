@@ -7,13 +7,13 @@ import axios from 'axios';
 import { ROOT_URL } from '../config';
 
 export function fetchBlogs() {
-    return function(dispatch) {
+    return function (dispatch) {
         axios.get(`${ROOT_URL}/api/blogPost/getPosts`)
             .then(response => {
                 dispatch({
                     type: SET_BLOGS,
                     payload: response.data
-                }) 
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -50,8 +50,8 @@ export function createNewBlogPost(formData, success) {
 export function editBlog(itemId, formData, success) {
     const token = localStorage.getItem('token');
     const id = itemId;
-    return function() {
-        axios.post(`${ROOT_URL}/api/blogPost/edit/${id}`, formData, {
+    return function () {
+        axios.put(`${ROOT_URL}/api/blogPost/edit/${id}`, formData, {
             header: {
                 'Content-Type': 'application/json',
                 'x-auth-token': token

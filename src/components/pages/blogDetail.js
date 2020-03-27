@@ -29,7 +29,7 @@ class BlogDetail extends Component {
                 <div className='blog-content'>
                     {content}
                 </div>
-                <div blog-tags>
+                <div className='blog-tags'>
                     {tags}
                 </div>
                 <NavLink to={`/edit/${this.props.blogPostToEdit._id}`}>Edit</NavLink>

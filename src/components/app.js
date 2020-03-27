@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { connect } fr
 
 import {
   Router,

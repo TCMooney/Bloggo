@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import * as actions from '../../actions';
+
+import SignupModal from './signupModal';
 import Logout from './logout';
 
 class NavigationContainer extends Component {
@@ -12,13 +15,17 @@ class NavigationContainer extends Component {
                 <Logout />
             </div>
         )
+        const modalButton = (
+            <a onClick={this.props.handleModalOpen}>Signup</a>
+        )
         return (
             <div className='nav-wrapper' >
                 <div className='left-side'>
                     <NavLink to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
                 </div>
                 <div className='right-side'>
-                    {isAuthenticated ? authLinks : null}
+                    {isAuthenticated ? authLinks : modalButton}
+                    <SignupModal />
                 </div>
             </div>
         )
@@ -29,4 +36,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, null)(NavigationContainer);
+export default connect(mapStateToProps, actions)(NavigationContainer);

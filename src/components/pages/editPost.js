@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
@@ -12,7 +12,7 @@ class EditPost extends Component {
         var formData = new FormData();
         formData.append('title', title);
         formData.append('title', content);
-        formData.append('tags',tags);
+        formData.append('tags', tags);
 
         this.props.editBlog(this.props.match.params.id, formData, () => { this.props.history.push('/home') });
     }
@@ -28,7 +28,7 @@ class EditPost extends Component {
         return (
             <div>
                 <EditBlogForm
-                    onCancel={() =>this.onCancel()}
+                    onCancel={() => this.onCancel()}
                     onSubmit={(event) => this.onSubmit(event)}
                 />
             </div>
@@ -36,4 +36,6 @@ class EditPost extends Component {
     }
 }
 
-export default connect(null, actions)(EditPost);
+EditPost = connect(null, actions)(EditPost);
+
+export default EditPost;

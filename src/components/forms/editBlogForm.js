@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
 import { FormInput, FormButton, FormTextArea } from './formFields';
 
@@ -14,7 +15,8 @@ class EditBlogForm extends Component {
                     type='title'
                     title='Blog Title'
                     placeholder='Blog Title'
-                    component={FormInput} />
+                    component={FormInput}
+                />
                 <Field
                     className='edit-blog-form__content'
                     name='content'
@@ -52,7 +54,17 @@ class EditBlogForm extends Component {
 }
 
 EditBlogForm = reduxForm({
-    form: 'EditBlogForm'
+    form: 'editblogform',
+    enableReinitialize: true
 })(EditBlogForm);
+
+function mapStateToProps(state) {
+    const { blogPostToEdit } = state.blogPosts;
+    return {
+        initialValues: blogPostToEdit
+    }
+}
+
+EditBlogForm = connect(mapStateToProps)(EditBlogForm)
 
 export default EditBlogForm;
