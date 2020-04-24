@@ -38,7 +38,6 @@ export function createNewBlogPost(formData, success) {
             }
         })
             .then(response => {
-                console.log(response.data);
                 success();
             })
             .catch(err => {
@@ -52,13 +51,31 @@ export function editBlog(itemId, formData, success) {
     const id = itemId;
     return function () {
         axios.put(`${ROOT_URL}/api/blogPost/edit/${id}`, formData, {
-            header: {
-                'Content-Type': 'application/json',
+            headers: {
+                'Content-type': 'application/json',
                 'x-auth-token': token
             }
         })
             .then(response => {
-                console.log(response.data);
+                success();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+export function deleteBlog(itemId, success) {
+    const token = localStorage.getItem('token');
+    const id = itemId;
+    return function () {
+        axios.delete(`${ROOT_URL}/api/blogPost/${id}/delete`, {
+            headers: {
+                'Content-type': 'application/json',
+                'x-auth-token': token
+            }
+        })
+            .then(response => {
                 success();
             })
             .catch(err => {

@@ -5,7 +5,6 @@ export class FormInput extends Component {
         const { className, title, type, placeholder, input } = this.props;
         return (
             <div className={`${className} form-input`}>
-                {/* <label className='form-input__label'>{title}</label> */}
                 <input className='form-input__input'
                     type={type}
                     placeholder={placeholder}
@@ -17,7 +16,7 @@ export class FormInput extends Component {
 }
 
 export class FormButton extends Component {
-    render(){
+    render() {
         const { className, title, type, onClick, input } = this.props;
         return (
             <div className={`${className} form-button`}>
@@ -33,9 +32,9 @@ export class FormButton extends Component {
 }
 
 export class FormTextArea extends Component {
-    render(){
+    render() {
         const { className, type, input, placeholder } = this.props;
-        return(
+        return (
             <div className={`${className} form-textarea`}>
                 <textarea
                     className='form-textarea__input'

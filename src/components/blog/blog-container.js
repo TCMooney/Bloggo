@@ -19,12 +19,11 @@ class BlogContainer extends Component {
             <div className='blog-posts'>
                 <div className='blog-item'>
                     {this.props.blogPosts.map(blogPost => {
-                        return <BlogItem key={blogPost._id} {...blogPost} />  
+                        return <BlogItem key={blogPost._id} {...blogPost} />
                     })}
                 </div>
                 <button onClick={this.handleNewBlogClick}>New Blog</button>
             </div>
-
         )
     }
 }

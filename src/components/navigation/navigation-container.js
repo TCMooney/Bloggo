@@ -6,6 +6,7 @@ import * as actions from '../../actions';
 
 import SignupModal from './signupModal';
 import Logout from './logout';
+import SearchBar from './search-bar';
 
 class NavigationContainer extends Component {
     render() {
@@ -24,6 +25,7 @@ class NavigationContainer extends Component {
                     <NavLink to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
                 </div>
                 <div className='right-side'>
+                    {isAuthenticated ? <SearchBar /> : null}
                     {isAuthenticated ? authLinks : modalButton}
                     <SignupModal />
                 </div>

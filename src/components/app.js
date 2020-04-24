@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } fr
-
+import { connect } from 'react-redux';
 import {
   Router,
   Switch,
@@ -8,20 +7,21 @@ import {
 } from 'react-router-dom';
 
 import history from '../history';
+import * as actions from '../actions';
 
 import NavigationContainer from './navigation/navigation-container'
 import Home from './pages/home';
-
 import Auth from './pages/auth';
 import NewBlogPost from './pages/newPost';
 import BlogDetail from './pages/blogDetail';
 import EditPost from './pages/editPost';
-import { loadUser } from '../actions/auth';
+import requireAuth from '../helpers/requireAuth';
 
-export default class App extends Component {
+class App extends Component {
   componentDidMount() {
-    loadUser()
+    this.props.loadUser();
   }
+
   render() {
     return (
       <Router history={history}>
@@ -29,13 +29,20 @@ export default class App extends Component {
           <NavigationContainer />
           <Switch>
             <Route exact path='/' component={Auth} />
-            <Route path='/home' component={Home} />
-            <Route path='/new' component={NewBlogPost} />
-            <Route path='/blog/:id' component={BlogDetail} />
-            <Route path='/edit/:id' component={EditPost} />
+            <Route path='/home' component={requireAuth(Home)} />
+            <Route path='/new' component={requireAuth(NewBlogPost)} />
+            <Route path='/blog/:id' component={requireAuth(BlogDetail)} />
+            <Route path='/edit/:id' component={requireAuth(EditPost)} />
           </Switch>
         </div>
       </Router>
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { auth } = state;
+  return auth;
+}
+
+export default connect(mapStateToProps, actions)(App);

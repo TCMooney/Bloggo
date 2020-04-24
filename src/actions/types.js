@@ -15,6 +15,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const ADD_NEW_BLOG = 'ADD_NEW_BLOG';
 export const FETCH_BLOG_ID = 'FETCH_BLOG_ID';
 export const SET_BLOGS = 'SET_BLOGS';
+// export const DELETE_BLOG = 'DELETE_BLOG';
 
 //Modals
 export const MODAL_STATUS = 'MODAL_STATUS';

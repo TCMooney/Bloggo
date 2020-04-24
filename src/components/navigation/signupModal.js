@@ -10,13 +10,14 @@ class SignupModal extends Component {
 
   handleSignup = (fields) => {
     this.props.signUp(fields, () => {
-      this.props.history.push('/home');
+      this.props.handleModalClose()
     })
   }
 
   render() {
     return (
       <ReactModal
+        ariaHideApp={false}
         onRequestClose={() => {
           this.props.handleModalClose();
         }}

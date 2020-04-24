@@ -47,7 +47,6 @@ class EditBlogForm extends Component {
                     title='Cancel'
                     component={FormButton}
                 />
-
             </form>
         )
     }
