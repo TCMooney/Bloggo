@@ -16,6 +16,7 @@ import NewBlogPost from './pages/newPost';
 import BlogDetail from './pages/blogDetail';
 import EditPost from './pages/editPost';
 import requireAuth from '../helpers/requireAuth';
+import Results from './pages/search-results';
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path='/new' component={requireAuth(NewBlogPost)} />
             <Route path='/blog/:id' component={requireAuth(BlogDetail)} />
             <Route path='/edit/:id' component={requireAuth(EditPost)} />
+            <Route path='/results' component={Results} />
           </Switch>
         </div>
       </Router>

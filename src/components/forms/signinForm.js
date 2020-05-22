@@ -26,7 +26,7 @@ class SigninForm extends Component {
                     component={FormInput}
                 />
                 <Field
-                    className='signin-from__login'
+                    className='signin-form__login'
                     name='login'
                     type='submit'
                     title='Login'

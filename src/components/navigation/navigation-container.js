@@ -7,8 +7,15 @@ import * as actions from '../../actions';
 import SignupModal from './signupModal';
 import Logout from './logout';
 import SearchBar from './search-bar';
+import history from '../../history';
 
 class NavigationContainer extends Component {
+
+    handleSearchSubmit(query) {
+        console.log(query);
+        history.push('/results');
+    }
+
     render() {
         const { isAuthenticated } = this.props.auth;
         const authLinks = (
@@ -17,15 +24,20 @@ class NavigationContainer extends Component {
             </div>
         )
         const modalButton = (
-            <a onClick={this.props.handleModalOpen}>Signup</a>
+            <a onClick={this.props.handleModalOpen} className='signup-button' >Signup</a>
         )
+
         return (
             <div className='nav-wrapper' >
                 <div className='left-side'>
-                    <NavLink to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
+                    <NavLink className='home-button' to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
                 </div>
                 <div className='right-side'>
-                    {isAuthenticated ? <SearchBar /> : null}
+                    {isAuthenticated ?
+                        <SearchBar
+                            onSubmit={(query) => { this.handleSearchSubmit(query) }}
+                        />
+                        : null}
                     {isAuthenticated ? authLinks : modalButton}
                     <SignupModal />
                 </div>

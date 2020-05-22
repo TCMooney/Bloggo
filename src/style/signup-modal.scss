@@ -1,0 +1,33 @@
+.signup-form {
+  display: grid;
+  grid-template-rows: [label-s] 1fr [label-e name-s] 1fr [name-e email-s] 1fr [email-e password-s] 1fr [password-e confirm-s] 1fr [confirm-e button-s] 1fr [button-e];
+  grid-template-columns: [title-s] 80px [title-e inputs-s] 30px [inputs-e signup-s] 200px [signup-e];
+  grid-row-gap: 10px;
+  justify-items: center;
+  &__title {
+    grid-row: label-s/label-e;
+    grid-column: title-s/title-e;
+  }
+  &__name {
+    grid-row: name-s/name-e;
+    grid-column: inputs-s/input-e;
+  }
+  &__email {
+    grid-row: email-s/email-e;
+    grid-column: inputs-s/input-e;
+  }
+  &__password {
+    grid-row: password-s/password-e;
+    grid-column: inputs-s/input-e;
+  }
+  &__confirm {
+    grid-row: confirm-s/confirm-e;
+    grid-column: inputs-s/input-e;
+  }
+  &__button {
+    grid-row: button-s/button-e;
+    grid-column: signup-s/signup-e;
+    justify-self: center;
+    align-self: center;
+  }
+}

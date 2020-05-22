@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 };
 
 export default function (state = INITIAL_STATE,
-    action) { 
+    action) {
     switch (action.type) {
         case ADD_NEW_BLOG:
             return {
