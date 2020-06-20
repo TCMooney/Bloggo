@@ -12,8 +12,8 @@ import history from '../../history';
 class NavigationContainer extends Component {
 
     handleSearchSubmit(query) {
-        console.log(query);
-        history.push('/results');
+        this.props.searchPosts(query)
+        history.push(`/results?query=${query}`);
     }
 
     render() {

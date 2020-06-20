@@ -2,11 +2,14 @@ import {
     ADD_NEW_BLOG,
     SET_BLOGS,
     FETCH_BLOG_ID,
+    SEARCH_BLOGS
 } from '../actions/types';
 
 const INITIAL_STATE = {
     blogPostToEdit: {},
-    blogPosts: []
+    blogPosts: [],
+    isLoaded: false,
+    searchResults: []
 };
 
 export default function (state = INITIAL_STATE,
@@ -34,13 +37,14 @@ export default function (state = INITIAL_STATE,
             })
             return {
                 ...state,
-                blogPostToEdit
+                blogPostToEdit,
+                isLoaded: true
             }
-        // case DELETE_BLOG:
-        //     return {
-        //         ...state,
-        //         items: statl
-        //     }
+        case SEARCH_BLOGS:
+            return {
+                ...state,
+                searchResults: action.payload
+            }
         default: return state;
     }
 }

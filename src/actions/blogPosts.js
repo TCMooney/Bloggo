@@ -1,6 +1,7 @@
 import {
     SET_BLOGS,
-    FETCH_BLOG_ID
+    FETCH_BLOG_ID,
+    SEARCH_BLOGS
 } from './types';
 
 import axios from 'axios';
@@ -81,5 +82,20 @@ export function deleteBlog(itemId, success) {
             .catch(err => {
                 console.log(err);
             })
+    }
+}
+
+export function searchPosts(query, success) {
+    return function (dispatch) {
+        axios.get(`${ROOT_URL}/api/blogPost/searchPosts?query=${query}`, {
+
+        })
+            .then(response => {
+                dispatch({
+                    type: SEARCH_BLOGS,
+                    payload: response.data
+                })
+            })
+            .catch(err => { console.log(err) });
     }
 }

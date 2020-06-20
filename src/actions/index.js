@@ -10,7 +10,8 @@ import {
     fetchBlogs,
     fetchBlogWithId,
     editBlog,
-    deleteBlog
+    deleteBlog,
+    searchPosts
 } from './blogPosts';
 
 import {
@@ -29,5 +30,6 @@ export {
     editBlog,
     handleModalOpen,
     handleModalClose,
-    deleteBlog
+    deleteBlog,
+    searchPosts
 }
