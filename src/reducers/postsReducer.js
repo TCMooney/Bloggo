@@ -2,14 +2,18 @@ import {
     ADD_NEW_BLOG,
     SET_BLOGS,
     FETCH_BLOG_ID,
-    SEARCH_BLOGS
+    SEARCH_BLOGS,
+    USER_BLOGS,
+    SORT
 } from '../actions/types';
 
 const INITIAL_STATE = {
     blogPostToEdit: {},
     blogPosts: [],
+    usersPosts: [],
     isLoaded: false,
-    searchResults: []
+    searchResults: [],
+    sorted: true
 };
 
 export default function (state = INITIAL_STATE,
@@ -18,15 +22,14 @@ export default function (state = INITIAL_STATE,
         case ADD_NEW_BLOG:
             return {
                 ...state,
-                blogPost: [action.payload, ...state.blogPost]
+                blogPost: [action.payload]
             };
         case SET_BLOGS:
-            const blogList = action.payload;
-            const blogPosts = blogList.reverse()
+            const blogPosts = action.payload;
             return {
                 ...state,
                 blogPosts
-            }
+            };
         case FETCH_BLOG_ID:
             const blogPostId = action.payload;
             var blogPostToEdit = {};
@@ -44,6 +47,11 @@ export default function (state = INITIAL_STATE,
             return {
                 ...state,
                 searchResults: action.payload
+            }
+        case USER_BLOGS:
+            return {
+                ...state,
+                usersPosts
             }
         default: return state;
     }

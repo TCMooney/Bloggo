@@ -11,13 +11,19 @@ import {
     fetchBlogWithId,
     editBlog,
     deleteBlog,
-    searchPosts
+    searchPosts,
+    usersPosts,
+    sortBlogs
 } from './blogPosts';
 
 import {
     handleModalOpen,
     handleModalClose
 } from './modals';
+
+import {
+    handleDropdownOpen,
+} from './drop-down';
 
 export {
     signIn,
@@ -31,5 +37,7 @@ export {
     handleModalOpen,
     handleModalClose,
     deleteBlog,
-    searchPosts
+    searchPosts,
+    usersPosts,
+    handleDropdownOpen
 }

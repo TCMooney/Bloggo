@@ -15,10 +15,11 @@ class BlogContainer extends Component {
     }
 
     render() {
+        const blogPosts = this.props.blogPosts.reverse()
         return (
             <div className='blog-posts'>
                 <div className='blog-item'>
-                    {this.props.blogPosts.map(blogPost => {
+                    {blogPosts.map(blogPost => {
                         return <BlogItem key={blogPost._id} {...blogPost} />
                     })}
                 </div>

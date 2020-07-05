@@ -1,7 +1,9 @@
 import {
     SET_BLOGS,
     FETCH_BLOG_ID,
-    SEARCH_BLOGS
+    SEARCH_BLOGS,
+    USER_BLOGS,
+    SORT
 } from './types';
 
 import axios from 'axios';
@@ -97,5 +99,20 @@ export function searchPosts(query, success) {
                 })
             })
             .catch(err => { console.log(err) });
+    }
+}
+
+export function usersPosts(userId) {
+    return function (dispatch) {
+        axios.get(`${ROOT_URL}/api/blogPost/getPostsByUser/${userId}`)
+            .then(response => {
+                dispatch({
+                    type: USER_BLOGS,
+                    payload: response.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 }

@@ -16,6 +16,10 @@ export const ADD_NEW_BLOG = 'ADD_NEW_BLOG';
 export const FETCH_BLOG_ID = 'FETCH_BLOG_ID';
 export const SET_BLOGS = 'SET_BLOGS';
 export const SEARCH_BLOGS = 'SEARCH_BLOGS';
+export const USER_BLOGS = 'USER_BLOGS';
 
 //Modals
 export const MODAL_STATUS = 'MODAL_STATUS';
+
+//DropDownMenu
+export const DROPDOWN_STATUS = 'DROPDOWN_STATUS';

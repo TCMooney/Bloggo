@@ -1,44 +1,42 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as actions from '../../actions';
 
 import SignupModal from './signupModal';
-import Logout from './logout';
-import SearchBar from './search-bar';
 import history from '../../history';
+import SearchBar from './search-bar';
 
 class NavigationContainer extends Component {
 
     handleSearchSubmit(query) {
         this.props.searchPosts(query)
         history.push(`/results?query=${query}`);
-    }
+      }
 
     render() {
+        const { dropDownIsOpen } = this.props.dropdown;
         const { isAuthenticated } = this.props.auth;
-        const authLinks = (
-            <div className='nav-link-wrapper'>
-                <Logout />
-            </div>
-        )
         const modalButton = (
             <a onClick={this.props.handleModalOpen} className='signup-button' >Signup</a>
         )
-
         return (
             <div className='nav-wrapper' >
                 <div className='left-side'>
                     <NavLink className='home-button' to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
                 </div>
                 <div className='right-side'>
-                    {isAuthenticated ?
+                    <div>
+                        <a onClick={this.props.handleDropdownOpen} className='dropdown-button' >
+                            <FontAwesomeIcon icon='bars'/>
+                        </a>
                         <SearchBar
-                            onSubmit={(query) => { this.handleSearchSubmit(query) }}
-                        />
-                        : null}
-                    {isAuthenticated ? authLinks : modalButton}
+                onSubmit={(query) => { this.handleSearchSubmit(query) }}
+              />
+                        {isAuthenticated ? null : modalButton}
+                    </div>
                     <SignupModal />
                 </div>
             </div>
@@ -47,7 +45,8 @@ class NavigationContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    dropdown: state.dropdown
 });
 
 export default connect(mapStateToProps, actions)(NavigationContainer);

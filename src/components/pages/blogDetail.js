@@ -20,7 +20,6 @@ class BlogDetail extends Component {
     render() {
         const { title, content, tags, date } = this.props.blogPostToEdit;
         const parsedDate = new Date(date);
-        console.log(this.props.isLoaded)
         if (this.props.isLoaded === false) {
             return <div> loading... </div>
         } else {
