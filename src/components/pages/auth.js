@@ -1,41 +1,85 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
 
-import * as actions from '../../actions';
-import SigninForm from '../forms/signinForm';
+// import * as actions from '../../actions';
+// import SigninForm from '../forms/signinForm';
+// import authImg from '../../../static/assets/images/auth/authImg.jpg'
+
+// class Auth extends Component {
+
+//   handleSignin = (fields) => {
+//     this.props.signIn(fields, () => {
+//       this.props.history.push('/home');
+//     })
+//   }
+
+//   componentDidUpdate() {
+//     if (this.props.isAuthenticated) {
+//       this.props.history.push('/home')
+//     }
+//   }
+
+//   render() {
+//     return (
+//       <div className='auth-container'
+//         style={{
+//           backgroundImage: `url(${authImg})`
+//         }}>
+//         <div className='signin-wrapper'>
+//           <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+
+// function mapStateToProps(state) {
+//   const { auth } = state;
+//   return auth;
+// }
+
+// export default connect(mapStateToProps, actions)(Auth);
+
+import React, { useState, useContext } from 'react';
+
+import { AuthContext } from '../contexts/AuthState';
 import authImg from '../../../static/assets/images/auth/authImg.jpg'
 
-class Auth extends Component {
+export default function SignIn(props) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  handleSignin = (fields) => {
-    this.props.signIn(fields, () => {
-      this.props.history.push('/home');
-    })
-  }
+  const { signIn } = useContext(AuthContext);
 
-  componentDidUpdate() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push('/home')
+  const onSubmit = event => {
+    event.preventDefault();
+
+    const credentials = {
+      email,
+      password
     }
+
+    signIn(credentials, () => { props.history.push('/home') })
   }
 
-  render() {
-    return (
+  return (
+    <div>
       <div className='auth-container'
         style={{
           backgroundImage: `url(${authImg})`
         }}>
         <div className='signin-wrapper'>
-          <SigninForm onSubmit={(event) => this.handleSignin(event)} className='signin-form' />
+          <form onSubmit={onSubmit}>
+            <div className='sign-in-email-wrapper'>
+              <input type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Enter Email' />
+            </div>
+            <div className='sign-in-password-wrapper'>
+              <input type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Enter Password' />
+            </div>
+            <button className='login-button'>Login</button>
+          </form>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-function mapStateToProps(state) {
-  const { auth } = state;
-  return auth;
-}
-
-export default connect(mapStateToProps, actions)(Auth);

@@ -1,7 +1,6 @@
-.dropdown-wrapper {
-  float: right;
-  transform: translateY(-30px);
-  z-index: 9;
-  background-color: white;
+.open-dropdown-wrapper {
   border: 1px solid black;
+  background-color: white;
+  transform: translateY(0px);
+  height: 90px;
 }

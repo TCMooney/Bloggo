@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import BlogContainer from '../blog/blog-container';
+import { BlogContext } from '../contexts/BlogState';
+import { AuthContext } from '../contexts/AuthState';
+import BlogItem from '../blog/blog-items';
 
-class UsersBlogs extends Component {
-  render() {
-    return (
-      <div>
-        UsersBlogs
-      </div>
-    )
-  }
+export default function UsersBlogs() {
+  const { fetchUsersBlogs, usersBlogs } = useContext(BlogContext);
+
+  const { usersId } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetchUsersBlogs(usersId)
+  }, [])
+
+  const sortedUsersBlogs = usersBlogs.sort((a, b) => new Date(b.date) - new Date(a.date))
+  return (
+    <div className='users-blogs-wrapper'>
+      {sortedUsersBlogs.map(blog => {
+        return <BlogItem key={blog._id} {...blog} />
+      })}
+    </div>
+  )
 }
-
-export default UsersBlogs;

@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import * as actions from '../../actions';
-
+import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthState';
+import { ModalContext } from '../contexts/ModalState';
 import SignupModal from './signupModal';
-import history from '../../history';
 import SearchBar from './search-bar';
+import DropDownMenu from './drop-down-menu';
+import history from '../../history';
 
-class NavigationContainer extends Component {
+export default function NavigationContainer(props) {
+    const { isAuthenticated, loadUser } = useContext(AuthContext);
 
-    handleSearchSubmit(query) {
-        this.props.searchPosts(query)
-        history.push(`/results?query=${query}`);
-      }
+    const { openModal, closeModal, openDropdown, closeDropdown, dropdownIsOpen, modalIsOpen } = useContext(ModalContext);
 
-    render() {
-        const { dropDownIsOpen } = this.props.dropdown;
-        const { isAuthenticated } = this.props.auth;
-        const modalButton = (
-            <a onClick={this.props.handleModalOpen} className='signup-button' >Signup</a>
-        )
-        return (
-            <div className='nav-wrapper' >
-                <div className='left-side'>
-                    <NavLink className='home-button' to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
-                </div>
-                <div className='right-side'>
-                    <div>
-                        <a onClick={this.props.handleDropdownOpen} className='dropdown-button' >
-                            <FontAwesomeIcon icon='bars'/>
-                        </a>
-                        <SearchBar
-                onSubmit={(query) => { this.handleSearchSubmit(query) }}
-              />
-                        {isAuthenticated ? null : modalButton}
-                    </div>
-                    <SignupModal />
-                </div>
+    const modalButton = (
+        <a onClick={modalIsOpen ? () => closeModal() : () => openModal()} className='signup-button' >Signup</a>
+    )
+
+    useEffect(() => {
+        loadUser(() => history.push('/home'))
+    }, [])
+    return (
+        <div className='nav-wrapper' >
+            <div className='left-side'>
+                <NavLink className='home-button' to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
             </div>
-        )
-    }
+            <div className='right-side'>
+                {isAuthenticated ?
+                    <div className='closed-dropdown-wrapper'>
+                        <SearchBar />
+                        <a onClick={dropdownIsOpen ? () =>
+                            closeDropdown() : () => openDropdown()
+                        } className='dropdown-button' >
+                            <FontAwesomeIcon icon='bars' />
+                        </a>
+                    </div>
+                    : null}
+                {isAuthenticated ? null : modalButton}
+                <SignupModal />
+                {dropdownIsOpen ? <DropDownMenu /> : null}
+            </div>
+        </div>
+    )
 }
-
-const mapStateToProps = state => ({
-    auth: state.auth,
-    dropdown: state.dropdown
-});
-
-export default connect(mapStateToProps, actions)(NavigationContainer);

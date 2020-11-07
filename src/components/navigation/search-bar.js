@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { withRouter } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class SearchBar extends Component {
+import { BlogContext } from '../contexts/BlogState';
+import history from '../../history'
 
-  handleFormSubmit = function ({ query }) {
-    this.props.onSubmit(query);
+export default function SearchBar(props) {
+  const [query, setQuery] = useState('');
+
+  const { searchBlogs } = useContext(BlogContext);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    searchBlogs(query, () => history.push(`/results?query=${query}`), () => setQuery(''));
   }
 
-  renderInput(field) {
-    return <input type='text' placeholder='Search' {...field.input} />
-  }
-  render() {
-    const { handleSubmit } = this.props
-    return (
-      <form className='search-bar' onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <Field
+  return (
+    <div className='search-bar-wrapper'>
+      <form className='search-bar' onSubmit={onSubmit}>
+        <button className='search-button'><FontAwesomeIcon icon='search' /></button>
+        <input
           name='query'
-          component={this.renderInput}
+          value={query}
+          type='text'
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder='Search'
         />
+
       </form>
-    )
-  }
+    </div>
+  )
 }
-
-SearchBar = reduxForm({
-  form: 'searchBar'
-})(SearchBar);
-
-SearchBar = withRouter(SearchBar);
-
-export default SearchBar;

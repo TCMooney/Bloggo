@@ -1,66 +1,44 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import * as actions from '../../actions';
+import { BlogContext } from '../contexts/BlogState';
+import { AuthContext } from '../contexts/AuthState';
 
-class BlogDetail extends Component {
-    componentDidMount() {
-        this.props.fetchBlogWithId(this.props.match.params.id)
-    }
+export default function BlogDetail(props) {
+    const { blogPostToEdit, getBlogWithId, deleteBlog, userId } = useContext(BlogContext);
 
-    handleEditBlog = () => {
-        history.push(`edit/${this.props.blogPostToEdit._id}`)
-    }
+    const { user, usersId } = useContext(AuthContext);
 
-    handleDeleteBlog = () => {
-        this.props.deleteBlog(this.props.blogPostToEdit._id, () => { this.props.history.push('/home') });
-    }
+    useEffect(() => {
+        getBlogWithId(props.match.params.id)
+    }, [])
 
-    render() {
-        const { title, content, tags, date } = this.props.blogPostToEdit;
-        const parsedDate = new Date(date);
-        if (this.props.isLoaded === false) {
-            return <div> loading... </div>
-        } else {
-            const { name } = this.props.blogPostToEdit.userId
-            return (
-                <div className='blog-detail-wrapper'>
-                    <div className='blog-title'>
-                        {title}
-                    </div>
-                    {/* TODO Add authorsName to blog detail */}
-                    <div className='blog-detail-date'>
-                        <div>{parsedDate.getMonth() + 1 + '/' + parsedDate.getDate() + '/' + parsedDate.getFullYear()}</div>
-                    </div>
-                    <div className='blog-author'>
-                        {`by: ${name}`}
-                    </div>
-                    <div className='blog-content'>
-                        {content}
-                    </div>
-                    <div className='blog-tags'>
-                        {tags}
-                    </div>
-                    {this.props.user._id === this.props.blogPostToEdit.userId ?
-                        <div className='blog-buttons'>
-                            <NavLink to={`/edit/${this.props.blogPostToEdit._id}`}>Edit</NavLink>
-                            <button onClick={this.handleDeleteBlog}>Delete</button>
-                        </div>
-                        : null}
-                </div>
-            )
-        }
-    }
-}
-
-
-function mapStateToProps(state) {
-    const { blogPostToEdit, isLoaded } = state.blogPosts;
-    const { user } = state.auth;
+    const { title, content, tags, date, _id } = blogPostToEdit;
+    const { name } = userId;
+    const parsedDate = new Date(date);
     return (
-        { blogPostToEdit, user, isLoaded }
+        <div className='blog-detail-wrapper'>
+            <div className='blog-title'>
+                {title}
+            </div>
+            <div className='blog-detail-date'>
+                <div>{parsedDate.getMonth() + 1 + '/' + parsedDate.getDate() + '/' + parsedDate.getFullYear()}</div>
+            </div>
+            <div className='blog-author'>
+                {`by: ${name}`}
+            </div>
+            <div className='blog-content'>
+                {content}
+            </div>
+            <div className='blog-tags'>
+                {tags}
+            </div>
+            {usersId === userId._id ?
+                <div className='blog-buttons'>
+                    <Link to={`/edit/${_id}`}>Edit</Link>
+                    <button onClick={() => deleteBlog(_id, () => props.history.push('/home'))}>Delete</button>
+                </div>
+                : null}
+        </div>
     )
 }
-
-export default connect(mapStateToProps, actions)(BlogDetail);

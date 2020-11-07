@@ -1,39 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import history from '../../history';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
+import { BlogContext } from '../contexts/BlogState';
 import BlogItem from './blog-items';
 
-class BlogContainer extends Component {
-    componentDidMount() {
-        this.props.fetchBlogs();
-    }
+export default function BlogContainer() {
+    const { blogPosts, getBlogPosts } = useContext(BlogContext);
 
-    handleNewBlogClick() {
-        history.push('/new')
-    }
+    useEffect(() => {
+        getBlogPosts();
+    }, []);
 
-    render() {
-        const blogPosts = this.props.blogPosts.reverse()
-        return (
-            <div className='blog-posts'>
-                <div className='blog-item'>
-                    {blogPosts.map(blogPost => {
-                        return <BlogItem key={blogPost._id} {...blogPost} />
-                    })}
-                </div>
-                <button onClick={this.handleNewBlogClick}>New Blog</button>
+    const sortedBlogs = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    return (
+        <div className='blog-posts'>
+            <div className='blog-item'>
+                {sortedBlogs.map(blogPost => {
+                    return <BlogItem key={blogPost._id} {...blogPost} />
+                })}
             </div>
-        )
-    }
+            <Link to='/new'>Add New Blog</Link>
+            {/* <button onClick={this.handleNewBlogClick}>New Blog</button> */}
+        </div>
+    )
 }
-
-function mapStateToProps(state) {
-    const { blogPosts } = state.blogPosts
-    return {
-        blogPosts
-    }
-}
-
-export default connect(mapStateToProps, actions)(BlogContainer);
