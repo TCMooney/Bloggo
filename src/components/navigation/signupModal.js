@@ -1,61 +1,3 @@
-// import React, { Component } from 'react';
-
-// import { connect } from 'react-redux';
-
-// import * as actions from '../../actions';
-// import SignupForm from '../forms/signupForm';
-
-// class SignupModal extends Component {
-//   constructor() {
-//     super();
-
-//     this.customStyles = {
-//       content: {
-//         top: '50%',
-//         left: '50%',
-//         right: 'auto',
-//         marginRight: '-50%',
-//         transform: 'translate(-50%, -50%)',
-//         width: '450px',
-//         height: '340px'
-//       },
-//       overlay: {
-//         backgroundColor: 'rgba(1, 1, 1, 0.75)'
-//       }
-//     };
-//   }
-
-
-//   handleSignup = (fields) => {
-//     this.props.signUp(fields, () => {
-//       this.props.handleModalClose()
-//     })
-//   }
-
-//   render() {
-//     return (
-//       <ReactModal
-//         style={this.customStyles}
-//         ariaHideApp={false}
-//         onRequestClose={() => {
-//           this.props.handleModalClose();
-//         }}
-//         isOpen={this.props.modalIsOpen}>
-//         <div className='signup-wrapper'>
-//           <SignupForm onSubmit={(event) => this.handleSignup(event)} className='signup-form' />
-//         </div>
-//       </ReactModal>
-//     )
-//   }
-// }
-
-// function mapStateToProps(state) {
-//   const { modalIsOpen } = state.modal;
-//   return { modalIsOpen }
-// }
-
-// export default connect(mapStateToProps, actions)(SignupModal);
-
 import React, { useContext, useState } from 'react';
 
 import ReactModal from 'react-modal';
@@ -96,8 +38,8 @@ export default function SignupModal(props) {
       right: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '450px',
-      height: '340px'
+      width: '350px',
+      height: '300px'
     },
     overlay: {
       backgroundColor: 'rgba(1, 1, 1, 0.75)'
@@ -114,16 +56,19 @@ export default function SignupModal(props) {
           closeModal();
         }}
         isOpen={modalIsOpen}>
-        <div className='signup-wrapper'>
-          <form onSubmit={onSubmit}>
-            <input type='text' value={name} onChange={(event) => setName(event.target.value)} placeholder='Name' />
-            <input type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email' />
-            <input type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Password' />
-            <input type='password' value={password2} onChange={(event) => setConfirmPassword(event.target.value)} placeholder='Confirm Password' />
-            <button>Sign Up</button>
+        <div className='sign-up-wrapper'>
+          <form onSubmit={onSubmit} className='sign-up-form'>
+
+            <input className='sign-up-name' type='text' value={name} onChange={(event) => setName(event.target.value)} placeholder='Name' />
+
+            <input className='sign-up-email' type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email' />
+
+            <input className='sign-up-password' type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Password' />
+            <input className='sign-up-confirm-password' type='password' value={password2} onChange={(event) => setConfirmPassword(event.target.value)} placeholder='Confirm Password' />
+            <button className='sign-up-button'>Sign Up</button>
           </form>
         </div>
       </ReactModal>
-    </div>
+    </div >
   )
 }

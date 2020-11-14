@@ -1,45 +1,40 @@
 .auth-container {
-  display: grid;
+  display: flex;
   width: 100%;
   height: calc(100vh - 87px);
   background-size: cover;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   .signin-wrapper {
     display: flex;
     height: 180px;
     width: 300px;
+    transform: translateY(-150px);
     justify-content: center;
-    .signin-form {
-      border-radius: 10px;
-      background-color: whitesmoke;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-rows: [email-s] 20px [email-e password-s] 20px [password-e login-s] 25px [login-e];
-      grid-template-columns: 30px [input-s] 250px [input-e button-s] 45px [button-e];
-      grid-row-gap: 25px;
-      align-content: center;
-      justify-items: center;
-      &__email {
-        .form-input__input {
-          width: 240px;
-          font-size: 15px;
-        }
-        grid-row: email-s/email-e;
-        grid-column: input-s/input-e;
-      }
-      &__password {
-        .form-input__input {
-          width: 240px;
-          font-size: 15px;
-        }
-        grid-row: password-s/password-e;
-        grid-column: input-s/input-e;
-      }
-      &__login {
-        grid-row: login-s/login-e;
-        grid-column: input-s/input-e;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid black;
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .signin-email {
+      @include auth-inputs;
+    }
+    .signin-password {
+      @include auth-inputs;
+    }
+    .login-button {
+      background-color: $blue-button;
+      color: white;
+      padding: 5px;
+      font-size: 25px;
+      border-radius: 8px;
+      transition: 0.5s ease-in-out;
+      &:hover {
+        background-color: $hover-button-blue;
       }
     }
   }

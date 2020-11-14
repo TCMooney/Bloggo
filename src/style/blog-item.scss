@@ -1,0 +1,16 @@
+.blog-posts {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.blog-item-wrapper {
+  align-items: center;
+  justify-content: center;
+  margin: 20px 80px;
+
+  // margin-right: 35px;
+  .blog-item-title {
+    text-decoration: underline;
+  }
+}

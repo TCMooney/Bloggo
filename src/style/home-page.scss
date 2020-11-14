@@ -1,0 +1,17 @@
+.home-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-blog-link {
+  font-size: 60px;
+  color: $hover-button-blue;
+  transition: 0.5s ease-in-out;
+  margin: 10px 50px;
+  right: 0;
+  top: 10;
+  position: fixed;
+  &:hover {
+    color: $blue-button;
+  }
+}

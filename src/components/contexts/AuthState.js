@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   async function signUp(fields, success) {
     try {
-      const res = await axios.post('http://localhost:4000/api/users', fields);
+      const res = await axios.post('http://localhost:4000/api/users', fields, { withCredentials: true });
 
       dispatch({
         type: 'AUTHENTICATE_USER',

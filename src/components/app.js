@@ -5,7 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faSignOutAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSignOutAlt, faSearch, faPlusCircle, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import history from '../history';
 
@@ -22,7 +22,7 @@ import { ProtectedRoute } from '../helpers/protectedRoute';
 import SearchResults from './pages/search-results';
 import UsersBlogs from './pages/users-blogs';
 
-library.add(faBars, faSignOutAlt, faSearch);
+library.add(faBars, faSignOutAlt, faSearch, faPlusCircle, faUser);
 
 export default function App() {
 

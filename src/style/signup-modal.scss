@@ -1,33 +1,26 @@
-.signup-form {
-  display: grid;
-  grid-template-rows: [label-s] 1fr [label-e name-s] 1fr [name-e email-s] 1fr [email-e password-s] 1fr [password-e confirm-s] 1fr [confirm-e button-s] 1fr [button-e];
-  grid-template-columns: [title-s] 80px [title-e inputs-s] 30px [inputs-e signup-s] 200px [signup-e];
-  grid-row-gap: 10px;
-  justify-items: center;
-  &__title {
-    grid-row: label-s/label-e;
-    grid-column: title-s/title-e;
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  .sign-up-name,
+  .sign-up-email,
+  .sign-up-password,
+  .sign-up-confirm-password {
+    @include sign-up-inputs;
   }
-  &__name {
-    grid-row: name-s/name-e;
-    grid-column: inputs-s/input-e;
-  }
-  &__email {
-    grid-row: email-s/email-e;
-    grid-column: inputs-s/input-e;
-  }
-  &__password {
-    grid-row: password-s/password-e;
-    grid-column: inputs-s/input-e;
-  }
-  &__confirm {
-    grid-row: confirm-s/confirm-e;
-    grid-column: inputs-s/input-e;
-  }
-  &__button {
-    grid-row: button-s/button-e;
-    grid-column: signup-s/signup-e;
+  .sign-up-button {
+    margin-top: 7.5px;
+    width: 35%;
     justify-self: center;
     align-self: center;
+    background-color: $blue-button;
+    color: white;
+    border-radius: 8px;
+    &:focus {
+      outline: none;
+    }
+    transition: 0.5s ease-in-out;
+    &:hover {
+      background-color: $hover-button-blue;
+    }
   }
 }

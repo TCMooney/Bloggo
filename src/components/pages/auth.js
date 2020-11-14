@@ -69,13 +69,9 @@ export default function SignIn(props) {
           backgroundImage: `url(${authImg})`
         }}>
         <div className='signin-wrapper'>
-          <form onSubmit={onSubmit}>
-            <div className='sign-in-email-wrapper'>
-              <input type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Enter Email' />
-            </div>
-            <div className='sign-in-password-wrapper'>
-              <input type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Enter Password' />
-            </div>
+          <form onSubmit={onSubmit} className='login-form'>
+            <input className='signin-email' type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Enter Email' />
+            <input className='signin-password' type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Enter Password' />
             <button className='login-button'>Login</button>
           </form>
         </div>

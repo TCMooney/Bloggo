@@ -1,0 +1,47 @@
+.blog-form {
+  display: grid;
+  grid-template-columns: 15rem [input-s] 20rem [input-e] 1fr;
+  grid-template-rows: [title-s] 5rem [title-e content-s] 20rem [content-e tags-s] 5rem [tags-e button-s] 5rem [button-e];
+  justify-content: center;
+  align-items: center;
+}
+
+.input-label {
+  font-size: 25px;
+  margin: 15px;
+}
+
+.blog-form-title,
+.blog-form-content,
+.blog-form-tags {
+  grid-column: input-s/input-e;
+}
+
+.blog-form-title {
+  grid-row: title-s/title-e;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-form-content {
+  display: flex;
+  flex-direction: column;
+  grid-row: content-s/content-e;
+  textarea {
+    resize: none;
+    height: 15rem;
+  }
+}
+
+.blog-form-tags {
+  display: flex;
+  flex-direction: column;
+  grid-row: tags-s/tags-e;
+}
+.submit-button {
+  grid-row: button-s/button-e;
+  grid-column: input-s/input-e;
+  @include buttons;
+  width: 140px;
+  height: 50px;
+}

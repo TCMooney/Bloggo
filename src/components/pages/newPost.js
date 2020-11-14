@@ -1,34 +1,8 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-
-// import * as actions from '../../actions';
-// import NewBlogForm from '../forms/newBlogPostForm';
-
-// class NewBlogPost extends Component {
-
-//     onSubmit = fields => {
-//         this.props.createNewBlogPost(fields, () => {
-//             this.props.history.push('/home')
-//         })
-//     }
-
-//     render() {
-//         return (
-//             <div className='new-blog'>
-//                 <NewBlogForm className='blog__form' onSubmit={event => this.onSubmit(event)}
-//                 />
-//             </div>
-//         )
-//     }
-// }
-
-// NewBlogPost = connect(null, actions)(NewBlogPost);
-
-// export default NewBlogPost;
-
 import React, { useState, useContext } from 'react';
 
 import { BlogContext } from '../contexts/BlogState';
+import InputLabel from '../InputLabel';
+import PageTitle from '../PageTitle';
 
 export default function NewPost(props) {
     const [title, setTitle] = useState('');
@@ -50,15 +24,19 @@ export default function NewPost(props) {
 
     return (
         <div className='add-blog-form'>
-            <form onSubmit={onSubmit}>
-                <div className='add-blog-title'>
-                    <input type='text' value={title} onChange={(event) => setTitle(event.target.value)} placholder='Title' />
+            <PageTitle title='New Blog' />
+            <form className='blog-form' onSubmit={onSubmit}>
+                <div className='new-blog-title blog-form-title'>
+                    <InputLabel labelTitle='Title' />
+                    <input className='blog-title-input' type='text' value={title} onChange={(event) => setTitle(event.target.value)} placholder='Title' />
                 </div>
-                <div className='add-blog-content'>
-                    <textarea type='text-area' value={content} onChange={(event) => setContent(event.target.value)} placholder='Content' />
+                <div className='new-blog-content blog-form-content'>
+                    <InputLabel labelTitle='Content' />
+                    <textarea className='blog-content-input' type='text-area' value={content} onChange={(event) => setContent(event.target.value)} placholder='Content' />
                 </div>
-                <div className='add-blog-tags'>
-                    <input type='text' value={tags} onChange={(event) => setTags(event.target.value)} placholder='Tags' />
+                <div className='new-blog-tags blog-form-tags'>
+                    <InputLabel labelTitle='Tags' />
+                    <input className='blog-tags-input' type='text' value={tags} onChange={(event) => setTags(event.target.value)} placholder='Tags' />
                 </div>
                 <button className='submit-button'>Add Blog</button>
             </form>
