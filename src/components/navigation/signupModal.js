@@ -64,7 +64,9 @@ export default function SignupModal(props) {
             <input className='sign-up-email' type='email' value={email} onChange={(event) => setEmail(event.target.value)} placeholder='Email' />
 
             <input className='sign-up-password' type='password' value={password} onChange={(event) => setPassword(event.target.value)} placeholder='Password' />
+
             <input className='sign-up-confirm-password' type='password' value={password2} onChange={(event) => setConfirmPassword(event.target.value)} placeholder='Confirm Password' />
+
             <button className='sign-up-button'>Sign Up</button>
           </form>
         </div>

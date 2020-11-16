@@ -14,9 +14,15 @@ export default function SearchResults(props) {
     <div className='blog-posts'>
       <PageTitle title='Search Results' />
       <div className='result-item'>
-        {sortedResults.map(result => {
-          return <BlogItem key={result._id} {...result} />
-        })}
+        {sortedResults.length === 0 ?
+          <h3 className='no-results'>No Results Found!</h3>
+          :
+          <div>
+            {sortedResults.map(result => {
+              return <BlogItem key={result._id} {...result} />
+            })}
+          </div>
+        }
       </div>
     </div>
   )

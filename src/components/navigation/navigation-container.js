@@ -24,7 +24,8 @@ export default function NavigationContainer(props) {
         <div className='nav-wrapper' >
             <div className='left-side'>
                 <NavLink className='home-button' to={isAuthenticated ? '/home' : '/'}>Bloggo</NavLink>
-                <SearchBar />
+                {isAuthenticated ? <SearchBar /> : null}
+
             </div>
             <div className='right-side'>
                 {isAuthenticated ?

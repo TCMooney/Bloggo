@@ -17,28 +17,30 @@ export default function BlogDetail(props) {
     const { name } = userId;
     const parsedDate = new Date(date);
     return (
-        <div className='blog-detail-wrapper'>
-            <div className='blog-title'>
-                {title}
-            </div>
-            <div className='blog-detail-date'>
-                <div>{parsedDate.getMonth() + 1 + '/' + parsedDate.getDate() + '/' + parsedDate.getFullYear()}</div>
-            </div>
-            <div className='blog-author'>
-                {`by: ${name}`}
-            </div>
-            <div className='blog-content'>
-                {content}
-            </div>
-            <div className='blog-tags'>
-                {tags}
-            </div>
-            {usersId === userId._id ?
-                <div className='blog-buttons'>
-                    <Link to={`/edit/${_id}`}>Edit</Link>
-                    <button onClick={() => deleteBlog(_id, () => props.history.push('/home'))}>Delete</button>
+        <div className='blog-detail'>
+            <div className='blog-detail-wrapper'>
+                <div className='blog-detail-title'>
+                    {title}
                 </div>
-                : null}
+                <div className='blog-detail-date'>
+                    <div>{parsedDate.getMonth() + 1 + '/' + parsedDate.getDate() + '/' + parsedDate.getFullYear()}</div>
+                </div>
+                <div className='blog-detail-author'>
+                    {`by: ${name}`}
+                </div>
+                <div className='blog-detail-content'>
+                    {content}
+                </div>
+                <div className='blog-detail-tags'>
+                    {tags}
+                </div>
+                {usersId === userId._id ?
+                    <div className='blog-detail-buttons'>
+                        <Link className='blog-detail-edit-button' to={`/edit/${_id}`}>Edit</Link>
+                        <button className='blog-detail-delete-button' onClick={() => deleteBlog(_id, () => props.history.push('/home'))}>Delete</button>
+                    </div>
+                    : null}
+            </div>
         </div>
     )
 }
