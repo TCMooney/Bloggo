@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import ReactModal from 'react-modal';
 import { AuthContext } from '../contexts/AuthState';
 import { ModalContext } from '../contexts/ModalState';
+import history from '../../history';
 
 export default function SignupModal(props) {
   const [name, setName] = useState('');
@@ -12,6 +13,8 @@ export default function SignupModal(props) {
 
   const { modalIsOpen, closeModal } = useContext(ModalContext);
   const { signUp } = useContext(AuthContext);
+
+  // const pushHome = ()
 
   const onSubmit = event => {
     event.preventDefault();
@@ -23,12 +26,12 @@ export default function SignupModal(props) {
       password2
     }
 
-    const success = () => {
-      closeModal();
-      () => history.push('/home');
+    async function success() {
+      const closeModal = await history.push('/home');
     }
 
     signUp(newUser, () => success())
+      .then(closeModal())
   }
 
   const customStyles = {

@@ -4,6 +4,7 @@ import { BlogContext } from '../contexts/BlogState';
 import { AuthContext } from '../contexts/AuthState';
 import BlogItem from '../blog/blog-items';
 import PageTitle from '../PageTitle';
+import NewBlogButton from '../blog/NewBlogButton';
 
 export default function UsersBlogs() {
   const { fetchUsersBlogs, usersBlogs } = useContext(BlogContext);
@@ -23,18 +24,22 @@ export default function UsersBlogs() {
   }
 
   return (
-    <div className='users-blogs-wrapper'>
-      <PageTitle title={`${capitalize(name)}'s Blogs`} />
-      {sortedUsersBlogs.length === 0 ?
-        <h3 className='no-results'>You don't have any blogs!</h3>
-        :
-        <div>
-          {sortedUsersBlogs.map(blog => {
-            return <BlogItem key={blog._id} {...blog} />
-          })
-          }
-        </div>
-      }
+    <div className='users-blogs blog-posts'>
+      <NewBlogButton />
+      <div className='users-blogs-wrapper'>
+        <PageTitle title={`${capitalize(name)}'s Blogs`} />
+
+        {sortedUsersBlogs.length === 0 ?
+          <h3 className='no-results'>You don't have any blogs!</h3>
+          :
+          <div>
+            {sortedUsersBlogs.map(blog => {
+              return <BlogItem key={blog._id} {...blog} />
+            })
+            }
+          </div>
+        }
+      </div>
     </div>
   )
 }

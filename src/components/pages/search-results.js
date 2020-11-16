@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import BlogItem from '../blog/blog-items';
+import NewBlogButton from '../blog/NewBlogButton';
 import { BlogContext } from '../contexts/BlogState';
 import PageTitle from '../PageTitle';
 
@@ -12,17 +13,20 @@ export default function SearchResults(props) {
 
   return (
     <div className='blog-posts'>
-      <PageTitle title='Search Results' />
-      <div className='result-item'>
-        {sortedResults.length === 0 ?
-          <h3 className='no-results'>No Results Found!</h3>
-          :
-          <div>
-            {sortedResults.map(result => {
-              return <BlogItem key={result._id} {...result} />
-            })}
-          </div>
-        }
+      <NewBlogButton />
+      <div className='blog-posts-wrapper'>
+        <PageTitle title='Search Results' />
+        <div className='result-item'>
+          {sortedResults.length === 0 ?
+            <h3 className='no-results'>No Results Found!</h3>
+            :
+            <div>
+              {sortedResults.map(result => {
+                return <BlogItem key={result._id} {...result} />
+              })}
+            </div>
+          }
+        </div>
       </div>
     </div>
   )
