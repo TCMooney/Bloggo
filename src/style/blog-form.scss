@@ -38,9 +38,11 @@
   flex-direction: column;
   grid-row: tags-s/tags-e;
 }
+
 .submit-button {
   grid-row: button-s/button-e;
   grid-column: input-s/input-e;
+  justify-self: center;
   @include buttons;
   width: 140px;
   height: 50px;
