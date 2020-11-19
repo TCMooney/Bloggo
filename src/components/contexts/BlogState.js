@@ -19,7 +19,7 @@ export const BlogProvider = ({ children }) => {
 
   async function getBlogPosts() {
     try {
-      const res = await axios.get('http://localhost:4000/api/blogPost/getPosts');
+      const res = await axios.get('https://tcm-bloggo-api.herokuapp.com/api/blogPost/getPosts');
 
       dispatch({
         type: 'GET_BLOGS',
@@ -35,7 +35,7 @@ export const BlogProvider = ({ children }) => {
 
   async function getBlogWithId(id) {
     try {
-      const res = await axios.get(`http://localhost:4000/api/blogPost/getPostById/${id}`, { withCredentials: true });
+      const res = await axios.get(`https://tcm-bloggo-api.herokuapp.com/api/blogPost/getPostById/${id}`, { withCredentials: true });
 
       dispatch({
         type: 'GET_BLOG_ID',
@@ -51,7 +51,7 @@ export const BlogProvider = ({ children }) => {
 
   async function addBlog(blog, success) {
     try {
-      const res = await axios.post('http://localhost:4000/api/blogPost/new', blog, { withCredentials: true })
+      const res = await axios.post('https://tcm-bloggo-api.herokuapp.com/api/blogPost/new', blog, { withCredentials: true })
 
       dispatch({
         type: 'ADD_BLOG',
@@ -69,7 +69,7 @@ export const BlogProvider = ({ children }) => {
 
   async function fetchUsersBlogs(userId) {
     try {
-      const res = await axios.get(`http://localhost:4000/api/blogPost/getPostsByUser/${userId}`, { withCredentials: true })
+      const res = await axios.get(`https://tcm-bloggo-api.herokuapp.com/api/blogPost/getPostsByUser/${userId}`, { withCredentials: true })
 
       dispatch({
         type: 'FETCH_USERS_BLOGS',
@@ -85,7 +85,7 @@ export const BlogProvider = ({ children }) => {
 
   async function deleteBlog(id, success) {
     try {
-      await axios.delete(`http://localhost:4000/api/blogPost/${id}/delete`, { withCredentials: true });
+      await axios.delete(`https://tcm-bloggo-api.herokuapp.com/api/blogPost/${id}/delete`, { withCredentials: true });
 
       dispatch({
         type: 'DELETE_BLOG',
@@ -100,7 +100,7 @@ export const BlogProvider = ({ children }) => {
 
   async function searchBlogs(query, success, clearForm) {
     try {
-      const res = await axios.get(`http://localhost:4000/api/blogPost/searchPosts?query=${query}`, { withCredentials: true })
+      const res = await axios.get(`https://tcm-bloggo-api.herokuapp.com/api/blogPost/searchPosts?query=${query}`, { withCredentials: true })
 
       dispatch({
         type: 'SEARCH_BLOGS',
@@ -116,7 +116,7 @@ export const BlogProvider = ({ children }) => {
 
   async function editBlog(itemId, formData, success) {
     try {
-      await axios.put(`http://localhost:4000/api/blogPost/edit/${itemId}`, formData, { withCredentials: true });
+      await axios.put(`https://tcm-bloggo-api.herokuapp.com/api/blogPost/edit/${itemId}`, formData, { withCredentials: true });
 
       console.log('Edit Successful');
       success()
