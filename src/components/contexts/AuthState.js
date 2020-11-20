@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   async function signIn(fields, success) {
     try {
-      const res = await axios.post('https://tcm-bloggo-api.herokuapp.com/api/auth', fields, { withCredentials: true })
+      const res = await axios.post('https://tcm-bloggo-api.herokuapp.com/api/auth/', fields, { withCredentials: true })
 
       dispatch({
         type: 'AUTHENTICATE_USER',
