@@ -4,10 +4,10 @@ import axios from 'axios';
 import AuthReducer from '../reducers/AuthReducer';
 
 const initialState = {
-  user: null,
+  user: '',
   isAuthenticated: false,
   usersId: {},
-  error: null
+  error: ''
 }
 
 export const AuthContext = createContext(initialState);
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   async function loadUser(success) {
     try {
-      const res = await axios.get('http://localhost:4000/api/auth/loadUser', { withCredentials: true })
+      const res = await axios.get('https://tcm-bloggo-api.herokuapp.com/api/auth/loadUser', { withCredentials: true })
 
       dispatch({
         type: 'AUTHENTICATE_USER',
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   async function signUp(fields, success) {
     try {
-      const res = await axios.post('http://localhost:4000/api/users', fields, { withCredentials: true });
+      const res = await axios.post('https://tcm-bloggo-api.herokuapp.com/api/users', fields, { withCredentials: true });
 
       dispatch({
         type: 'AUTHENTICATE_USER',
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   async function signIn(fields, success) {
     try {
-      const res = await axios.post('http://localhost:4000/api/auth', fields, { withCredentials: true })
+      const res = await axios.post('https://tcm-bloggo-api.herokuapp.com/api/auth', fields, { withCredentials: true })
 
       dispatch({
         type: 'AUTHENTICATE_USER',
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
   async function signOut(success) {
     try {
-      const res = await axios.get('http://localhost:4000/api/auth/logout', { withCredentials: true })
+      const res = await axios.get('https://tcm-bloggo-api.herokuapp.com/api/auth/logout', { withCredentials: true })
 
       dispatch({
         type: 'SIGNOUT_SUCCESS',

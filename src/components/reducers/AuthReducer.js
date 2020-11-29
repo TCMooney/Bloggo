@@ -13,7 +13,7 @@ export default (state, action) => {
     case 'SIGNOUT_SUCCESS':
       return {
         ...state,
-        user: null,
+        user: '',
         isAuthenticated: false,
         usersId: {},
         error: action.payload

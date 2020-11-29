@@ -27,7 +27,7 @@ export default function EditPost(props) {
 
         const editedBlog = {
             title: selectedTitle,
-            content: setSelectedContent,
+            content: selectedContent,
             tags: selectedTags
         }
         editBlog(currentBlogId, editedBlog, () => props.history.push('/home'));

@@ -7,7 +7,6 @@ import PageTitle from '../PageTitle';
 
 export default function SearchResults(props) {
   const { searchResults } = useContext(BlogContext);
-  console.log(searchResults.userId)
 
   const sortedResults = searchResults.sort((a, b) => new Date(b.date) - new Date(a.date))
 

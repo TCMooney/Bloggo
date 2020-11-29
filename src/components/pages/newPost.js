@@ -4,7 +4,7 @@ import { BlogContext } from '../contexts/BlogState';
 import InputLabel from '../InputLabel';
 import PageTitle from '../PageTitle';
 
-export default function NewPost() {
+export default function NewPost(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tags, setTags] = useState('');
