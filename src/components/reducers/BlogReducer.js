@@ -3,13 +3,15 @@ export default (state, action) => {
     case 'GET_BLOGS':
       return {
         ...state,
-        blogPosts: action.payload
+        blogPosts: action.payload,
+        isLoading: true
       }
     case 'GET_BLOG_ID':
       return {
         ...state,
         blogPostToEdit: action.payload,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        isLoading: false
       }
     case 'ADD_BLOG':
       return {
@@ -24,7 +26,8 @@ export default (state, action) => {
     case 'SEARCH_BLOGS':
       return {
         ...state,
-        searchResults: action.payload
+        searchResults: action.payload,
+        isLoading: true
       }
     case 'DELETE_BLOG':
       return {

@@ -9,7 +9,8 @@ const initialState = {
   userId: {},
   usersBlogs: [],
   searchResults: [],
-  error: null
+  error: null,
+  isLoading: true
 }
 
 export const BlogContext = createContext(initialState);
@@ -135,6 +136,7 @@ export const BlogProvider = ({ children }) => {
       error: state.error,
       searchResults: state.searchResults,
       usersBlogs: state.usersBlogs,
+      isLoading: state.isLoading,
       getBlogPosts,
       getBlogWithId,
       addBlog,
